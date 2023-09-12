@@ -80,6 +80,9 @@ with open("./data/georef-switzerland-kanton.geojson") as response:
 
 
 st.header("Renewable Sources Energy Production in Cantons of Switzerland")
+url = "https://data.open-power-system-data.org/renewable_power_plants/2020-08-25/"
+st.write("Data Source:", url)
+
 # Setting up columns
 left_column, right_column = st.columns([2, 1])
 
@@ -105,62 +108,8 @@ fig_source.update_layout(mapbox_style="carto-positron",
                  mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
 fig_source.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
 #fig.update_layout(title_text = "Total Hydro Energy Production per Canton")
-st.plotly_chart(fig_source)    
+st.plotly_chart(fig_source)  
 
-
-#Production of Total energy per canton
-fig_total = px.choropleth_mapbox(df_canton_prod_total, geojson=geojson, featureidkey='properties.kan_name', title="Total Clean Energy Production per Canton",
-                           locations=df_canton_prod_total.index, color="production", height =500)
-
-fig_total.update_layout(mapbox_style="carto-positron",
-                 mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
-fig_total.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
-#fig.update_layout(title_text = "Total Solar Production per Canton")
-#fig.show()
-
-st.plotly_chart(fig_total)
-
-
-#Production of solar energy per canton
-fig_solar = px.choropleth_mapbox(df_canton_prod_solar, geojson=geojson, featureidkey='properties.kan_name', title="Total Solar Production per Canton",
-                           locations=df_canton_prod_solar.index, color="production", height =500)
-
-fig_solar.update_layout(mapbox_style="carto-positron",
-                 mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
-fig_solar.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
-#fig.update_layout(title_text = "Total Solar Production per Canton")
-#fig_solar.show()
-st.plotly_chart(fig_solar)
-
-#Production of wind energy per canton
-fig_wind = px.choropleth_mapbox(df_canton_prod_wind, geojson=geojson, featureidkey='properties.kan_name', title="Total Wind Energy Production per Canton",
-                           locations=df_canton_prod_wind.index, color="production", height =500)
-
-fig_wind.update_layout(mapbox_style="carto-positron",
-                 mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
-fig_wind.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
-#fig.update_layout(title_text = "Total Solar Production per Canton")
-st.plotly_chart(fig_wind)
-
-#Production of bio energy per canton
-fig_bio = px.choropleth_mapbox(df_canton_prod_bio, geojson=geojson, featureidkey='properties.kan_name', title="Total Bio Energy Production per Canton",
-                           locations=df_canton_prod_bio.index, color="production", height =500)
-
-fig_bio.update_layout(mapbox_style="carto-positron",
-                 mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
-fig_bio.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
-#fig.update_layout(title_text = "Total Solar Production per Canton")
-st.plotly_chart(fig_bio)
-
-#Production of hydro energy per canton
-fig_hydro = px.choropleth_mapbox(df_canton_prod_hydro, geojson=geojson, featureidkey='properties.kan_name', title="Total Hydro Energy Production per Canton",
-                           locations=df_canton_prod_hydro.index, color="production", height=500)
-
-fig_hydro.update_layout(mapbox_style="carto-positron",
-                 mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
-fig_hydro.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
-#fig.update_layout(title_text = "Total Hydro Energy Production per Canton")
-st.plotly_chart(fig_hydro)
 
 
 
