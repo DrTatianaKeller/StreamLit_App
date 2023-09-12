@@ -79,7 +79,7 @@ with open("./data/georef-switzerland-kanton.geojson") as response:
     geojson = json.load(response)
 
 
-st.header("Renewable Sources Energy Production in Cantons of Switzerland")
+st.header("Renewable Sources of Energy Production in Cantons of Switzerland")
 url = "https://data.open-power-system-data.org/renewable_power_plants/2020-08-25/"
 st.write("Data Source:", url)
 
