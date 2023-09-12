@@ -117,8 +117,8 @@ fig_source.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
 #fig.update_layout(title_text = "Total Hydro Energy Production per Canton")
 if show_sources == "Yes":
     if source == "All":
-        fig_source.add_trace(px.scatter_mapbox(df_location_filtering, lat='lat', lon='lon', size='production', color_discrete_map='energy_source_level_2', hover_name="municipality", hover_data=["canton","production", "project_name","company",'energy_source_level_2']).data[0])
-        fig_source.update_traces(marker=dict(color=lajolla, opacity=0.7),
+        fig_source.add_trace(px.scatter_mapbox(df_location_filtering, lat='lat', lon='lon', size='production', hover_name="municipality", hover_data=["canton","production", "project_name","company",'energy_source_level_2']).data[0])
+        fig_source.update_traces(marker=dict(color='yellow', opacity=0.7),
                   selector=dict(mode='markers'))
     else:
         fig_source.add_trace(px.scatter_mapbox(df_location_filtering, lat='lat', lon='lon', size='production', hover_name="municipality", hover_data=["canton","production", "project_name","company"]).data[0])
