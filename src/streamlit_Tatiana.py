@@ -99,7 +99,7 @@ else:
     df_canton_prod = df[df["energy_source_level_2"] == source].groupby('canton').agg({'production':"sum"})
 
     df_location = df[df["energy_source_level_2"] == source]
-    
+
 df_location_filtering = df_location[df_location['production'] >= 0]
 
 
@@ -112,7 +112,8 @@ fig_source.update_layout(mapbox_style="carto-positron",
 fig_source.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
 #fig.update_layout(title_text = "Total Hydro Energy Production per Canton")
 fig_source.add_trace(px.scatter_mapbox(df_location_filtering, lat='lat', lon='lon', size='production', hover_name="municipality", hover_data=["canton","production", "project_name","company"]).data[0])
-
+fig_source.update_traces(marker=dict(color='yellow', opacity=0.7),
+                  selector=dict(mode='markers'))
 
 st.plotly_chart(fig_source)  
 
