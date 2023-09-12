@@ -94,10 +94,13 @@ source = left_column.selectbox("Choose an Energy Source", sources)
 # Flow control and plotting
 if source == "All":
     df_canton_prod = df.groupby('canton').agg({'production':"sum"})
+    df_location=df
 else:
     df_canton_prod = df[df["energy_source_level_2"] == source].groupby('canton').agg({'production':"sum"})
 
-
+    df_location = df[df["energy_source_level_2"] == source]
+    
+df_location_filtering = df_location[df_location['production'] >= 0]
 
 
 #Production of energy per canton
@@ -108,6 +111,9 @@ fig_source.update_layout(mapbox_style="carto-positron",
                  mapbox_zoom=6, mapbox_center = {"lat": 46.8182, "lon": 8.2275})
 fig_source.update_layout(margin={"r":0,"t":50,"l":0,"b":0})
 #fig.update_layout(title_text = "Total Hydro Energy Production per Canton")
+fig_source.add_trace(px.scatter_mapbox(df_location_filtering, lat='lat', lon='lon', size='production', hover_name="municipality", hover_data=["canton","production", "project_name","company"]).data[0])
+
+
 st.plotly_chart(fig_source)  
 
 
